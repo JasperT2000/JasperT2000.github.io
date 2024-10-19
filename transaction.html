@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NHANNES Data Analysis</title>
+    <link rel="stylesheet" href="project_styles.css" />
+  </head>
+
+  <body>
+    <header class="title-bar">
+      <h1>Sales Transaction Analysis (Associative rule mining)</h1>
+    </header>
+
+    <div class="container">
+      <main class="content">
+        <!-- Introduction -->
+        <section class="intro">
+          <h3>Introduction</h3>
+          <p>
+            The dataset under consideration is a transaction record table from a
+            supermarket chain purchase database. Through this analysis we will
+            be bringing out sales pattern based on factors such as days,
+            customer behaviour, product types etc. We will start by analysing
+            the sales happened date-wise and proceed with more complex analysis
+            such as basket-level analysis, Associative rule mining and analyse
+            customer shopping behavior.
+          </p>
+          <p>
+            The notebook containing the analysis can be found
+            <a href="https://github.com/JasperT2000/transaction">here.</a>
+          </p>
+          <p>The top five rows of the table is shown below.</p>
+          <img src="images/transactable.png" alt="Transactions" class="image" />
+        </section>
+        <section class="intro">
+          <h3>Analysis</h3>
+          <h5>Sales across the year</h5>
+          <p>
+            Firstly, we will make a line plot showing the total amount collected
+            on every day across the year to find any potential patterns.
+          </p>
+          <img
+            src="images/datesales.png"
+            alt="Sales across days"
+            class="image"
+          />
+          <p>
+            From the plot, we can observe that the overall sales is at peak
+            during the last quarter of the year. Also, during most of the
+            months, the sale is at peak during first few days.
+          </p>
+          <hr />
+          <h5>Day-wise average sales across the year</h5>
+          <p>
+            In the next plot, we are going to find on which day the sales is
+            going to be high considering the average sales of a day across the
+            year.
+          </p>
+          <img
+            src="images/weeksales.png"
+            alt="Sales across days"
+            class="image"
+          />
+          <p>
+            <li>
+              From the plot, we could find that most amount of sales take place
+              on Sunday.
+            </li>
+            <li>
+              The shop is closed on Tuesday since no transactions have been
+              recorded.
+            </li>
+            <li>Weekend is more profitable and more customers are expected.</li>
+          </p>
+          <h5>Most items sold on Sundays</h5>
+          <p>
+            Next step is to find which items are sold most on Sundays so that
+            the store can be prepared with some propmotions for these items.
+          </p>
+          <p>
+            <li>
+              The product with the highest revenue on Sunday is:
+              <strong>PaperCraftLittleBirdie</strong>, with revenue: 501359.0625
+            </li>
+            <li>
+              The product with the highest sales volume on Sunday is:
+              <strong>PopcornHolder</strong>, with total Quantity: 16144
+            </li>
+          </p>
+          <hr />
+          <h5>Top 5 products based on profit</h5>
+          <p>
+            The next plot shows the most profitable products for the supemarket.
+          </p>
+          <img src="images/top5.png" alt="Top 5 products" class="image" />
+          <h5>Most profitable country</h5>
+          <img
+            src="images/country.png"
+            alt="Profitable country"
+            class="image"
+          />
+          <hr />
+          <h5>Customer with most number of transactions</h5>
+          <p>
+            The customer with the highest shopping frequency is:<strong>
+              12748</strong
+            >
+            with 207 distinct transactions.
+          </p>
+          <img src="images/topcust.png" alt="Top customer" class="image" />
+          <hr />
+          <h5>Basket recreation</h5>
+          <p>
+            2 new columns were created, Product Category and productname_process
+            to view the desired output. The dataset was grouped based on
+            transaction and all the product category and product_name data were
+            aggregated. The baskets representing each and every transaction is
+            prepared for further analysis.
+          </p>
+          <img src="images/basket.png" alt="Basket" class="image" />
+          <hr />
+          <h5>Associative Data Mining</h5>
+          <p>
+            For this part, the table is pivotted with top 100 products as
+            columns and transactions as rows. We will be analysing the purchase
+            trennds followed by customers. Apriori algorithm is used for this
+            purpose.
+          </p>
+          <img src="images/apriori1.png" alt="ARM1" class="image" />
+          <p>
+            From the above query and output, we can conclude that the products
+            JumboBagPinkPolkadot and JumboBagRedRetrospot are frequently brought
+            together in more than 5% of the total transactions
+          </p>
+          <img src="images/apriori2.png" alt="ARM1" class="image" />
+          <img src="images/apriori3.png" alt="ARM1" class="image" />
+          <img src="images/apriori4.png" alt="ARM1" class="image" />
+          <img src="images/apriori5.png" alt="ARM1" class="image" />
+          <p>
+            From the above results, we can find that there are 962 transactions
+            with a confidence level more than 60%. Hence the antecedent and the
+            consequent can be placed together to boost up the sales.
+          </p>
+          <img src="images/apriori6.png" alt="ARM1" class="image" />
+          <img src="images/apriori7.png" alt="ARM1" class="image" />
+          <img src="images/apriori8.png" alt="ARM1" class="image" />
+          <p>
+            Another interesting finding is around 156 transactions are stronger
+            with a large value of lift, higher confidence and also contribute to
+            1.5% of the total transactions. These products can be announced for
+            sales with some combo offers to attract customers.
+          </p>
+          <hr />
+          <h5>Customer segmentation</h5>
+          <img
+            src="images/customerseg.png"
+            alt="Customer segmentation"
+            class="image"
+          />
+          <p>
+            The solution is implemented using the euclidean_distances class from
+            sklearn. The solution is optimal for this dataset. Alternatives for
+            this question would be choosing other methodologies to calculate the
+            distance such as Manhattan distance etc.
+          </p>
+          <p>
+            To recommend products that the customer has never purchased before,
+            we have come up with 2 approaches based on the previous tasks.
+          </p>
+          <p><strong>APPROACH 1:</strong></p>
+          <p>
+            Using Apriori analysis done in the basket analysis, we can analyze
+            the purchase patterns of a customer and suggest that customer,
+            products he/she has never bought.
+          </p>
+          <li>Identify the products brought by customer</li>
+          <li>Compare the products with the results from Apriori Analysis</li>
+          <li>Suggest the top products</li>
+          <p><strong>APPROACH 2:</strong></p>
+          <p>
+            We can analyze the purchase patterns of customers similar to another
+            customer, rank the products they have bought based on the quantity
+            and then recommend the new products.
+          </p>
+          <li>Identify top 3 similar customers</li>
+          <li>Analyze their basket data</li>
+          <li>Suggest new products</li>
+        </section>
+        <section class="intro">
+          <h3>CONCLUSION</h3>
+          The analysis has been successfully carried out and important findings
+          have been reported. For future, a dashboard could be built to view all
+          the data which would be helpful in story-telling. Also sales
+          forecasting can be done with the help of Machine learning models.
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

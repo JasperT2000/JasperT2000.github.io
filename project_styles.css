@@ -1,0 +1,110 @@
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.title-bar {
+  background-color: #9e77d6;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.content {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1,
+h2 {
+  color: #333;
+  text-align: center;
+}
+
+h2 {
+  border-bottom: 2px solid #6200ea;
+  padding-bottom: 0.5rem;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.8;
+}
+
+ul {
+  list-style: disc;
+  margin-left: 2rem;
+  color: #555;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  margin: 1.5rem auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.intro,
+.data,
+.features,
+.model1,
+.results,
+.visualization,
+.conclusion,
+.sleepmetrics {
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+.inline-block {
+  display: inline-block;
+}
+.image-container {
+  position: relative;
+}
+
+.image-name {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+.video {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  margin: 1.5rem auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

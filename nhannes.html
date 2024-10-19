@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NHANNES Data Analysis</title>
+    <link rel="stylesheet" href="project_styles.css" />
+  </head>
+
+  <body>
+    <header class="title-bar">
+      <h1>NHANNES Data Analysis using Bokeh</h1>
+    </header>
+
+    <div class="container">
+      <main class="content">
+        <!-- Introduction -->
+        <section class="intro">
+          <p>
+            NHANES is designed to assess the health and nutritional status of adults and children in the United States. The survey is unique in that it combines interviews, physical examinations, and administers tests of physical activity and fitness that include children and adolescents.
+            The main goal of this analysis is to
+            <ul>
+                <li>Find relationships between different factors (from unrelated departments) in the dataset</li>
+                <li>Use bokeh package for interactive visualizations</li>
+            </ul>
+            The complete notebook can be found here.
+            <a
+              href="https://github.com/JasperT2000/NHANNES/blob/main/nhannes_analysis.ipynb"
+              >here.</a
+            >.
+          </p>
+          <p>
+            This analysis comprises of:
+            <ul>
+                <li>Dataset collection</li>
+                <li>Merging datasets</li>
+                <li>Data wrangling</li>
+                <li>Building plots</li>
+                <ul>
+                    <li>Depression amongst people with various income</li>
+                    <li>Mean cholesterol level of each age group</li>
+                    <li>Health conditions amongst individuals vs their shift timings</li>
+                    <li>Linked plot for comparing mean systole and diastole pressure among various age groups</li>
+                    <li>Table to view health report with additional filters</li>
+                </ul>
+            </ul>
+          </p>
+        </section>
+        <section class="intro">
+          <h3>Dataset Collection and pre-processing</h3>
+          <p>
+            NHANNES dataset is free for use and can be downloaded from here
+            <a
+              href="https://wwwn.cdc.gov/nchs/nhanes/continuousnhanes/default.aspx?Cycle=2017-2020"
+              >(dataset)</a
+            >.
+          </p>
+          <p>For this analysis, the specific data considered are:</p>
+          <ul>
+            <li>Demographics data </li>
+            <li>Blood Pressure data</li> 
+            <li>Cholesterol, diabetes data</li>
+            <li>Income data</li> 
+            <li>Mental health data</li>  
+            <li>Occupation data</li>
+          </ul>
+          <h5>Data pre-processing:</h5>
+          <p>The dataset contains 5.397605e-79 in place of 0, hence we replace them with the help of the below lambda function</p>
+          <p>To handle the missing values in columns like Cholesterol value, Systolic reading and diastolic reading, the medians of the corresponding columns have been used.</p>
+          <p>The depression data is just a question and answer response in form of scores. So, for this analysis, patient with a cummulative score of 5 or more are considered to be depressed.</p>
+          <img src="images/preproc.png" alt="Pre pre-processing" class="image" />
+          </section>
+          <section class="intro">
+            <h3>Interactive plots using Bokeh</h3>
+            <h4>Depression amongst people with various income:</h4>
+            <p>The below plot is to find if there is any relationship to a person's mental health with his income. For this, the columns taken are "INDFMMPC" which gives the index of poverty to the family and the "depression" column computed in pre-processing step.</p>
+            <p>The plot is made in such a way that when we hover over each bar, a tooltip is viewd with the informations such as the INDFMMPC category, the number of people in this categore, the number of depressed people in this category and the ratio between them. The line plot is added to view the trend properly.</p>
+            <video class="video" muted controls>
+                <source src="videos/depression.mov" type="video/mp4">
+            </video>
+            <p>From the above plot, we could observe that, as the <strong>income gets higher</strong>, the ratio of <strong>depressed people is decreasing</strong>. (Labels 7 are missing data and 9 are people who didn't disclose the data). Hence, we can infer that a <strong>person's income is one of the key factors to maintain his mental health.</strong></p>
+            <h4>Impact of working hours on health conditions:</h4>
+            <p>In the next plot, we will be making plots to see if working hours has an impact on health conditions such as <strong> Cholesterol, hyper-tension, diabetes, Asthma, heart attack, liver conditions and thyroid</strong>. We will be doing this with the help of linked plots from the bokeh package.</p>
+            <p><li>A bar plot is plotted to visualize the count of people with various health conditions</li>
+            <li>A pie chart corresponding to each bar is shown in the adjacent plot. This is achieved with the help of linked plotsin bokeh package.</li></p>
+            <p>Selct a bar in the bar chart and view the corresponding distribution of work hours in the adjacent pie-graph.</p>
+            <video class="video"  muted controls>
+                <source src="videos/hours.mov" type="video/mp4">
+            </video>
+            <p>
+                The above plot is helpful in viewing the number of people working in varying shifts who suffer from a particular health condition. We can observe that, most of the health conditions are found in people working either the regular shift or varying shift. This might be due to the fact that the people working in those shifts are more. But if we take out the ratio, we might be able to make other inferences as well.
+            </p>
+            <h4>Table to view health report with additional filters</h4>
+            <p>We will create a new table with various functionalities such as sorting based on a column, selecting from drop down, checkboxes, slider for ranges to get a comprehensive look on how the records are present.</p>
+            <video class="video"  muted controls>
+                <source src="videos/table.mov" type="video/mp4">
+            </video>
+            <p>From the above table, various filters can be applied and the dataset can be filtered out to find various subsets of data for further analysis.</p>
+            <h4>Systole and Diastole readings against the age:</h4>
+            <p>
+                In the next plot, we will be plotting the Systole and Diastole readings against the age to view the pattern. This is also done by linking 2 plots. As the range in 1 plot is changed by zooming in or moving sideways, the next plot will also show the corresponding co-ordinates.
+            </p>
+            
+            <video class="video"  muted controls>
+                <source src="videos/bp.mov" type="video/mp4">
+            </video>
+            <h5>
+                INSTRUCTIONS:
+            </h5>
+            <li>There is a tool box here as well. The first icon when selected enables you to move throughout the graph and explore.</li>
+            <li>The second option when selected enables you to select a section of one of the graphs and view the same section on the other graph.</li>
+            <li>The third icon when selected, enables you to zoom in and out in the graph.</li>
+            <p>From the above graph we can infer that the systolic blood pressure increases gradually with age within a range of 110 till 150. This clears the notion that 120 is the ideal systolic pressure. The mean diastolic pressure increases till late 50s and starts to decrease gradually. The range is between 67 - 80</p>
+            <h4>Mean cholesterol value amongst different age groups:</h4>
+            <p>In this plot, we will make a normal line plot more visually pleasing by adding some custom effects to view the mean cholesterol level of different age group.</p>
+            <p>As you hover through the plot, a tooltip box showing the age group with closer mean values if popped up. </p>
+            <video class="video" muted controls>
+                <source src="videos/cholesterol.mov" type="video/mp4">
+            </video>
+            <p>From the above plot we can draw some inferences such as, 
+               <ul>
+                <li>As age increases cholesterol level also increases gradually till a particular age (till 60s)</li>
+                <li>The cholesterol gradually decreases after this age.</li>
+                <li>Aged people should be careful about their diet in terms of cholesterol for health reasons</li>
+               </ul>
+            </p>
+            <p>This plot can be useful in comparing an individual cholesterol level with the mean cholesterol level of his/her age group.</p>
+        </section>
+        <section class="intro">
+            <h3>CONCLUSION:</h3>
+            <p>Throughout this task, we have drawn various conclusions based on the plots which we have plotted by combining a variety of datasets. The bokeh package has been extensively used to make interactive plots, linked plots and table. Effective visualization techniques have been used to bring out conclusions and inferences between various variables from the NHANES dataset.</p>
+            <p>As future work a comprehensive dashboard can be built to view various plots. There are a lot of data collected. Task related research can be done.</p>
+        </section>
+
+        
+      </main>
+    </div>
+  </body>
+</html>

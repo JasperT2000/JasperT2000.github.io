@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="title-bar">
+      <h1>My Portfolio</h1>
+    </header>
+    <div class="container">
+      <nav class="sidebar">
+        <div class="profile-section">
+          <div class="profile-pic">
+            <img src="images/profile1.jpg" alt="Jasper" />
+          </div>
+          <div class="profile-name">
+            <h2>Jasper Thanapal</h2>
+          </div>
+        </div>
+        <ul>
+          <li><a href="#" onclick="showPage('about')">About</a></li>
+          <li>
+            <a href="#projects" onclick="showPage('projects')">Portfolio</a>
+          </li>
+        </ul>
+      </nav>
+      <main class="content">
+        <section id="about" class="page">
+          <h2>About Me</h2>
+          <div class="resume-section">
+            <h4>Career Profile</h4>
+            <p>
+              Highly motivated and hard-working Data Science aspirant with a
+              passion for applying ML/AI methods to real-world data. Seeking an
+              internship opportunity to gain real-world experience by working on
+              complex projects. Proven experience in tackling complex data
+              science problems with a focus on machine learning and data
+              analysis.
+            </p>
+            <h4>Education</h4>
+            <p>
+              <strong>Master of Data Science</strong>, Deakin University,
+              Burwood (2023 - Present)
+            </p>
+            <p>
+              <strong>Bachelor in Engineering</strong>, Dr. Mahalingam college
+              of engineering and technology, Coimbatore (2018 - 2022)
+            </p>
+            <h4>Experience</h4>
+            <p>
+              <strong>Software Testing Intern</strong>, ZOHO Corporation,
+              Chennai (Sep 2021 - Jan 2022)
+            </p>
+            <ul>
+              <li>
+                Developed skills in both manual and automation testing using
+                Selenium WebDriver with Java.
+              </li>
+              <li>
+                Tested various online applications including IRCTC and ZohoSign,
+                identifying and reporting bugs.
+              </li>
+              <li>
+                Presented findings to the ZohoSign Development Team and executed
+                end-to-end testing as a solo tester.
+              </li>
+            </ul>
+            <h4>Technical Skills</h4>
+            <ul>
+              <li>
+                Advanced: Python, SQL, Sci-kit learn, Pandas, NumPy, TensorFlow,
+                Keras...
+              </li>
+              <li>
+                Intermediate: C#, JAVA, R, HTML, CSS, Bootstrap, Manual
+                testing...
+              </li>
+              <li>
+                Foundational: C, Linux, Database Modelling, Git, Jenkins,
+                PowerBI
+              </li>
+            </ul>
+            <h4>Projects</h4>
+            <p>
+              <strong
+                >Sleep disorder analysis based on inertial-wrist worn sensor
+                data</strong
+              >
+              (May 2024 - September 2024)
+            </p>
+            <ul>
+              <li>
+                Collected datasets that contains recordings from PPG sensors of
+                a single night in a time-series format for 10 patients
+              </li>
+              <li>
+                Developed feature extraction scripts capable of extracting
+                statistical features from raw ppg sensor readings
+              </li>
+              <li>
+                Developed a stacking classifier model to analyze these
+                time-series statistical data and predict the ground truth which
+                is the sleep state of the patient achieveing 73% accuracy
+              </li>
+              <li>
+                Developed a pre-processing script which is capable of
+                extractiong sleep metrics such as REM%, NoREM%, Latency etc from
+                the classified sleep stages
+              </li>
+              <li>
+                Developed Machine learning classifier to predict if a person is
+                suffering from sleep disorder based on sleep metrics such as
+                REM%, Sleep latency, Arousals etc with an acuracy over 97%
+              </li>
+            </ul>
+            <p>
+              <strong
+                >Earlier prediction of Cardio Vascular Diseases using Random
+                Forest Classifier</strong
+              >
+              (Feb 2022 - May 2022)
+            </p>
+            <ul>
+              <li>
+                Accumulated stored and cleansed medical data required to devise
+                an ML model
+              </li>
+              <li>
+                Conducted Exploratory Data Analysis and Feature Engineering on
+                collected dataset to analyze various hidden patterns in data
+              </li>
+              <li>
+                Trained and tested constructed classifier model and improved its
+                efficiency by hyper-parameter tuning
+              </li>
+              <li>Developed front-end website using HTML, Bootstrap and JS</li>
+              <li>Deployed the developed model as a Flask application</li>
+            </ul>
+            <h4>Certifications</h4>
+            <ul>
+              <li>
+                Complete Python Programming Masterclass Beginner to Advanced,
+                Udemy
+              </li>
+              <li>
+                SQL for Beginners: Learn SQL using MySQL and Database Design,
+                Udemy
+              </li>
+              <li>
+                End-to-End Machine Learning with TensorFlow on Google Cloud,
+                Coursera
+              </li>
+              <li>Python for Data Science, AI & Development, Udemy</li>
+            </ul>
+          </div>
+        </section>
+        <section id="projects" class="page" style="display: none">
+          <h2>Projects</h2>
+          <div class="projects-grid">
+            <div class="project-card">
+              <img src="images/sleep.avif" alt="Project 1" />
+              <p>Sleep Disorder Prediction with ppg sensor recordings</p>
+              <a href="sleep.html#projects">View Project</a>
+            </div>
+            <div class="project-card">
+              <img src="images/road-signs.jpg" alt="Project 2" />
+              <p>Victorian Road sign Classification using deep learning</p>
+              <a href="road.html">View Project</a>
+            </div>
+            <div class="project-card">
+              <img src="images/heart.jpg" alt="Project 3" />
+              <p>Heart attack disease prediction using Machine learning</p>
+              <a href="heart.html">View Project</a>
+            </div>
+          </div>
+          <!-- Add more project cards as needed -->
+          <h2>Data Analysis</h2>
+          <div class="projects-grid">
+            <div class="project-card">
+              <img src="images/nhannes1.jpg" alt="Analysis 1" />
+              <p>NHANNES Data analysis using Bokeh</p>
+              <a href="nhannes.html">View Project</a>
+            </div>
+            <div class="project-card">
+              <img src="images/transaction.png" alt="Analysis 2" />
+              <p>Sales Transaction Analysis (Associative rule mining)</p>
+              <a href="transaction.html">View Project</a>
+            </div>
+            <div class="project-card">
+              <img src="images/datastack.webp" alt="Analysis 3" />
+              <p>Analysis on data dump (Data Science Stack Exchange)</p>
+              <a href="stack.html">View Project</a>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="scripts.js"></script>
+  </body>
+</html>

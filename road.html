@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Victorian Road Sign Classification</title>
+  <link rel="stylesheet" href="project_styles.css" />
+</head>
+
+<body>
+  <header class="title-bar">
+    <h1>Victorian Road Sign Classification</h1>
+  </header>
+
+  <div class="container">
+    <main class="content">
+      <!-- Introduction -->
+      <section class="intro">
+        <p>Through this task, I would like to classify 5 different sign boards used for warnings on road across
+          Victoria. The classes which are being considered for this analysis are <strong>“School zone”</strong>,
+          <strong>“Pedestrian crossing”</strong>, <strong>“No Entry”</strong>, <strong>“No stopping”</strong>,<srtong>
+            “No left or right turn”</srtong>. The code implementation of this project can be found <a href="https://github.com/JasperT2000/Road_sign_classification"
+              >here</a
+            >.
+          Some of the theoretical challenges include,
+        </p>
+        <ul>
+          <li>Model might get confused with the similar colored road signs</li>
+          <li>Different angles and lighting conditions might prove to be a challenge while classification</li>
+        </ul>
+        <p>
+          Some of the practical challenges include,
+        </p>
+        <ul>
+          <li>There is no open dataset that has the required images for classification</li>
+          <li>Collecting dataset manually might be hard</li>
+          <li>If we manage to collect a large dataset, training might require a lot of computational resources</li>
+        </ul>
+        <p>
+          The input to the model will be a pre-processed image. The output should be the class to which it belongs to.
+          The target classes are:
+        </p>
+        <ul>
+          <li>School zone</li>
+          <li>Pedestrian crossing</li>
+          <li>No Entry</li>
+          <li>No stopping</li>
+          <li>No left or right turn</li>
+      </section>
+
+      <section class="intro"></section>
+      <p>The series of tasks carried out as part of this project are</p>
+      <ul>
+        <li>Dataset collection from various sources across web</li>
+        <li>Development of a simple CNN and testing it against validation set</li>
+        <li>Create new dataset with more images with the help of image augmentation</li>
+        <li>Retrain and re-evaluate another CNN with same architecture</li>
+        <li>Compare the performance of both the models under equal time</li>
+        <li>Find the patterns between the misclassified images</li>
+        <li>Collect a new dataset with the help of google real time view</li>
+        <li>Check how well the model is generalized and make improvements</li>
+      </ul>
+      </section>
+      <section class="intro">
+        <h3>Dataset Collection and Processing</h3>
+        <p>
+          For this task, we need a dataset with images representing each class. There was no open dataset available for
+          this cause. Hence, The images are to be collected and labelled manually.
+
+          For this task, I am looking to collect around 50 images for each class considering the availability of images
+          across web.
+
+          To evaluate the model performance, we can monitor the metrics such as training accuracy, training loss,
+          validation accuracy, validation loss, accuracy, precision and recall to check how the model has performed and
+          also to ensure that the model doesn’t overfit.
+
+        </p>
+        <img src="images/imagegen.png" alt="Image generator" class="image" />
+        <p>Some of the sample images collected are:</p>
+        <img src="images/pedestrian.jpeg" alt="Pedestrian crossing" />
+        <img src="images/noentry.jpeg" alt="No Entry" />
+        <img src="images/noright.jpeg" alt="No Right" />
+        <img src="images/nostopping.png" alt="No stopping" />
+        <img src="images/school.jpeg" alt="School zone" />
+      </section>
+      <section class="intro">
+        <h3>Development of CNN:</h3>
+        <img src="images/cnn1.png" alt="CNN architecture" class="image" />
+        <h4>The results of training and validation can be analysed by plotting the accuracy and loss at each epoch.</h4>
+        <div>
+          <div class="inline-block">
+            <img src="images/accuracy1.png" alt="Accuracy" width="400" height="400" />
+          </div>
+          <div class="inline-block">
+            <img src="images/loss1.png" alt="Loss" width="400" height="400" />
+          </div>
+        </div>
+        <p>
+          The model has been trained with a small dataset of about 200 images and validated. The training accuracy is
+          about 87 and the validation accuracy is just 56% which tells that the model is not good at predicting unseen
+          data. The validation loss is also high when compared with the training loss.
+        </p>
+      </section>
+      <section class="intro">
+        <h3>Image augmentation</h3>
+        <p>
+          The below cell was executed only once since it generates and saves the augmented images in a directory. This
+          has been done so that, the images need not be augmented every single time when needed.
+        </p>
+
+        <img src="images/augmentation.png" alt="Augmentation" class="image" />
+      </section>
+      <section class="intro">
+        <h3>Retrain the model with new extended dataset</h3>
+        <div>
+          <div class="inline-block">
+            <img src="images/accuracy2.png" alt="Accuracy" width="400" height="400" />
+          </div>
+          <div class="inline-block">
+            <img src="images/loss2.png" alt="Loss" width="400" height="400" />
+          </div>
+        </div>
+        <p>
+          The model's accuracy has been increased on a whole after using augmented images for training. The training
+          accuracy has been increased to 94% and the validation accuracy is around 80% which is a significant
+          improvement. The loss value has also been lowered which implies that the model has been improved.
+        </p>
+        <p>
+          The additional timing spent on training the model has improved the performance of the model significantly in
+          terms of predicting more accurately. It's always better to expose more images to the model, so that we get a
+          model which is more generalised.
+        </p>
+      </section>
+      <section class="intro">
+        <h3>Training under equal time:</h3>
+        <figure class="image">
+          <figcaption>Without augmentation:</figcaption>
+    <img src='images/withoutaug.png' alt='Without augmentation' width="600" height="400" />
+</figure>
+        <figure class="image">
+          <figcaption>With augmentation:</figcaption>
+    <img src='images/withaug.png' alt='With augmentation' width="600" height="400" />
+</figure>
+<h4>Result comparison:</h4>
+<img src="images/timeresult.png" alt="Time result" class="image" />
+<p>
+  After setting equal time for both the training, we could find that still the model trained with augmented dataset is performing better than the other model. In this run, the augmented model ran for 10 epochs and the other model ran for 49 epochs. The seconds can be altered, but in most of the cases the observed result holds.
+</p>
+<p>
+  The metrics training accuracy is more in case of non-augmented model which is equal to one implying over-fitting. The validation accuracy is low (58%) when compared with the augmented model (70%). Also the validation loss is 3.015 which is too high while compared with 0.777 suggesting that the non-augmented model performs poor even under similar training time in this scenario.
+</p>
+      </section>
+      <section class="intro">
+        <h3>Analysis on misclassified images:</h3>
+        <p>
+          The classification report is printed to observe the precision, recall and other metrics of the model in predicting each class.
+        </p>
+        <img src="images/report.png" alt="Classification report" class="image" />
+        <p>
+          To further analyse on where the model went wrong, the confusion matrix is plotted.
+        </p>
+        <img src="images/cm.png" alt="Confusion matrix" class="image" />
+        <p>
+          Totally <strong>64</strong> images have been misclassified out of 229 images and the list of all the mis-classified images were printed out to see if there is some pattern (list can be seen in the notebook). Form the classification report printed above, we could observe that the model has <strong>done well</strong>  in predicting the images of classes <strong>"no_entry"</strong>  and <strong>"school_zone"</strong> . The mode has been confused between classifying images from the other classes
+        </p>
+        <p>
+          The above confusion matrix will be helpful in assessing where the model is being wrong.
+          <ul>
+          <li>Some of the images from <strong>"no_left_right"</strong> are being classified as <strong>"pedestrian crossing"</strong>. This might be due to the reason that the images in both the cases cover up a significant portion of roadway within them.</li>
+          <li>There is also a confusion between <strong>"no_stopping"</strong> and <strong>"no_left_right"</strong>. This might be due to the presence of more white color in their images.</li>
+          </ul>
+        </p>
+        <p>
+          The best way to improve the model's accuracy is to increase the training dataset with more images in all these classes. Also more specific pre-processing techniques should be introduced so that the predictions are more accurate.
+        </p>
+      </section>
+      <section class="intro">
+        <h3>Model Generalization:</h3>
+        <p>
+          The new test images taken are either from google maps real time view or photographs taken. No images were downloaded from the web source as it was done in previous cases making this a more realistic dataset.
+        </p>
+        <p>Some of the new sample images collected are:</p>
+        <img src="images/ped1.png" alt="Pedestrian crossing" width="200", height="200" />
+        <img src="images/noentry1.png" alt="No Entry" width="200", height="200" />
+        <img src="images/noright1.png" alt="No Right"width="200", height="200"/>
+        <img src="images/nostop1.png" alt="No stopping" width="200", height="200" />
+        <img src="images/school1.png" alt="School zone" width="200", height="200"/>
+        <p>The newly collected dataset comprising of real-time images of road signs were tested for prediction by the developed model. The results are shown below:</p>
+        <img class="image" src="images/result3.png" alt="Result"/>
+        <p>
+          The accuracy of the model on the new dataset is around 40% suggesting that the model is confused when it is exposed to new data. The model requires more improvements so that we can obtain a generalised model.
+        </p>
+        <h4>
+          APPROACH 1
+        </h4>
+        <h5><strong>Use pre-trained model</strong></h5>
+        <p>
+          In this approach we will be using a pre-trained classifier which has been exposed to large amount of images and it can be used as the base model on top of wich a few layers are added so that it can be customised for our cause.
+        </p>
+        <h5>MobileNetV2 model:</h5>
+        <img class="image" src="images/result4.png" alt="Result"/>
+        <p>
+          The new test accuracy of the model has been increased from <strong> 40 to 60%</strong> by adopting a pre-trained model. This approach has been the most successful one while trying to make the model more generalised. The training time was almost the same as previous model training time.
+        </p>
+        <h4>
+          APPROACH 2
+        </h4>
+        <h5><strong>Dropout layers and L2 regularization</strong></h5>
+        <p>The architecture of the model is made more complex by adding dropout layers with l2 regularization.</p>
+        <img class="image" src="images/CNN2.png" alt="CNN"/>
+        <p>The result of the new model is:</p>
+        <img class="image" src="images/result5.png" alt="Result"/>
+        <p>After adding regularizers, the accuracy has been increased <strong>(47%)</strong>, but there is no significant improvement in this approach too. However, applying l2 regularizer helps prevent overfitting of the model which makes the model more generalized.</p>
+        <h4>
+          APPROACH 3
+        </h4>
+        <h5>ResNet</h5>
+        <p>
+          The below approach defines a ResNet-like architecture using a custom ResidualUnit class for building residual blocks, which helps in training deeper networks by mitigating the vanishing gradient problem. Each residual block consists of two convolutional layers followed by batch normalization and a skip connection that adds the input directly to the output of the block. The model begins with a convolutional layer and adds a series of residual units with increasing filters and strides to capture complex features. Finally, the output is processed through fully connected layers for classification into five classes, with the model compiled using the Adam optimizer and categorical cross-entropy loss.
+        </p>
+        <figure class="image">
+          <figcaption>Model Architecture:</figcaption>
+    <img src='images/architecture3.png' alt='Architecture' width="600" height="400" />
+</figure>
+<p>The result of the new model is:</p>
+        <img class="image" src="images/result6.png" alt="Result"/>
+      <p>Using this methodology, the training time was too hugh and the model has performed poorly.</p>
+      </section>
+      <section class="intro">
+        <h3>CONCLUSION:</h3>
+        <p>
+        A deep analysis has been carried out in terms of classifying road signs of Victoria. The steps from data collection till model refinement has been demonstrated successfully. The recommended model is a <strong> pre-trained MobileNetV2</strong> model. The learnings from this project is, more the data and more the computational resource, a better model can be built for road sign classification.
+        </p>
+      </section>
+  </main>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sleep Disorder Prediction Project</title>
+    <link rel="stylesheet" href="project_styles.css" />
+  </head>
+  <body>
+    <header class="title-bar">
+      <h1>Sleep Disorder Prediction</h1>
+    </header>
+
+    <div class="container">
+      <main class="content">
+        <!-- Introduction -->
+        <section class="intro">
+          <h2>Project Overview</h2>
+          <p>
+            This project focuses on predicting different sleep stages using
+            wearable sensor data to help detect sleep disorders such as insomnia
+            and sleep apnea. The solution comprises of two classifying machine
+            learning models working together. One of the models is used to
+            classify the sleep stage of a person based on the readings from ppg
+            sensor. The other model classifies if a person has sleep disorder or
+            not based on the sleep metrics. The code implementation for this
+            project can be found
+            <a href="https://github.com/JasperT2000/sleep_disorder_predicticion"
+              >here</a
+            >
+          </p>
+        </section>
+
+        <!-- Data Description -->
+        <section class="data">
+          <h2>Data Description</h2>
+          <p>
+            Two different dataset are required for this project to develop the
+            models. The ppg sensor data were obtained from
+            <a href="https://zenodo.org/records/7775567">here</a>
+            and the dataset with patients details about sleep metrics and
+            disorder can be requested
+            <a href="https://sleepdata.org/">here</a>.
+          </p>
+          <p><strong>Data from ppg sensor</strong></p>
+          <ul>
+            <li>
+              Stastical Features such as Average peak-to-peak amplitude Pulse
+              width Systolic and diastolic areas Hjorth parameters Poincare
+              features Fractal dimensions and other robust statistical features
+            </li>
+            <li>
+              Sleep Stages(Target Variable): Awake, NREM1, NREM2, NREM3, REM
+              (Multi-class)
+            </li>
+          </ul>
+          <img src="images/data_1.png" alt="Data1" class="image" />
+          <p><strong>Data from patient dataset</strong></p>
+          <ul>
+            <li>Sleep metrics such as REM%, NoREM%, Latencey etc</li>
+            <li>Disorder(Target variable) - Yes or No (Binary)</li>
+          </ul>
+          <img
+            src="images/data_2.png"
+            alt="Data2"
+            class="image"
+            width="500"
+            height="600"
+          />
+        </section>
+
+        <!-- Feature Engineering -->
+        <section class="features">
+          <h2>Feature Extraction (Statistical features from PPG)</h2>
+          <p>
+            As a part of the project, a pre-processing script that is capable of
+            extracting statistical features required to predict the sleep stage
+            was developed and tested with a sample PPG recording
+          </p>
+          <p>
+            The sample ppg recording was obtained from this
+            <a href="https://data.mendeley.com/datasets/yynb8t9x3d/1">link</a>
+          </p>
+          <img src="images/ppg.png" alt="ppg signal" class="image" />
+          <p>
+            The supporting script consists of class PPGFeatureExtractor which
+            takes in the signal amplitude values as input and returns the
+            necessary features.
+          </p>
+          <img
+            src="images/extracted_features.png"
+            alt="Features extracted"
+            class="image"
+          />
+        </section>
+
+        <!-- Model 1 -->
+        <section class="model1">
+          <h2>Machine Learning model for sleep stage classification</h2>
+          <p>
+            The next step in this project is to develop a classifier model that
+            is capable of finding which stage of sleep a patient is in using the
+            extracted features.
+          </p>
+          <p>The classes of the target variable (sleep stage) are:</p>
+          <ul>
+            <li>0 - NREM1</li>
+            <li>1 - NREM2</li>
+            <li>2 - NREM3/4</li>
+            <li>4 - REM</li>
+            <li>5 - AWAKE</li>
+          </ul>
+          <p>
+            The detailed analysis and coding can be found in this
+            <a
+              href="https://github.com/JasperT2000/sleep_disorder_predicticion/blob/main/sleep_stage_classifier.ipynb"
+              >notebook</a
+            >
+          </p>
+          <p>
+            The following models were developed as part of the analysis and
+            tested for metrics such as accuracy, precision, recall etc to decide
+            which is the best model.
+          </p>
+          <p><strong>MODELS:</strong></p>
+          <ul>
+            <li>Logistic Regression</li>
+            <li>Random Forest</li>
+            <li>CNN</li>
+            <li>Gradient Boosting Classifier</li>
+            <li>Lightgbm</li>
+            <li>Stacking Classifier</li>
+            <li>Neural network</li>
+            <li>LSTM</li>
+          </ul>
+          <p>
+            The results and report achieved for each model is shown in the
+            notebook. In the analysis, two paths were chosen to train the model.
+            Initially the models were trained with a single patient's data and
+            then to make the model more generalised, a combined dataset of 10
+            patients were created to train and ealuate the model's performance.
+            Among these results, the stacking classifier proved to be the best
+            solution and the architecture and results are shown below.
+          </p>
+          <p><strong>ARCHITECTURE</strong></p>
+          <img src="images/Model.png" alt="Stacking classifier" class="image" />
+          <p><strong>CLASSIFICATION REPORT:</strong></p>
+          <img
+            src="images/Result1.png"
+            alt="Stacking classifier report"
+            class="image"
+          />
+        </section>
+
+        <!-- Sleep metrics extraction -->
+        <section class="sleepmetrics">
+          <h2>Sleep Metrics Extraction script</h2>
+          <p>
+            The script consists of class SleepMetricsExtended which accepts the
+            classified sleep stages as input, to compute and return the sleep
+            metrics such as REM%, NoREM%, Latency sleep etc to be fed as input
+            for the final model.
+          </p>
+          <img
+            src="images/metrics.png"
+            alt="Sleep metrics"
+            class="image"
+            width="200"
+            height="200"
+          />
+        </section>
+
+        <!-- Model 2 -->
+        <section class="model2">
+          <h2>Machine Learning model for sleep disorder prediction</h2>
+          <p>
+            This is the final part of the project wherein the calculated sleep
+            metrics along with patient apecific data are put to use in finding
+            if a person has sleep disorder or not.
+          </p>
+          <p>
+            Different classifiers were tested and the Random Classifier
+            performed well in terms of classifying the test data.
+          </p>
+          <p><strong>RESULTS:</strong></p>
+          <img src="images/Result2.png" alt="Result 2" class="image" />
+        </section>
+
+        <!-- Integration -->
+        <section class="integration">
+          <h2>Result</h2>
+          <p>
+            All the developed models and pre-processing scripts were used to
+            find if the patient is sufferring from sleep disorder or not. Here
+            is the result of one such patient.
+          </p>
+          <img src="images/result.png" alt="Result" class="image" />
+        </section>
+
+        <!-- Future work -->
+        <section class="conclusion">
+          <h2>Future Works</h2>
+          <ul>
+            <li>
+              Both the datasets are comparitively small and are usefull only for
+              academic purposes. Real-time large dataset need to be collected
+              and used for product development.
+            </li>
+            <li>
+              I have not used the sleep stage values that is predicted by the
+              model for the next step in which the sleep metrics are calculated
+              since the ppg values used by the authors of first dataset is
+              unknown and the sample which I have taken is of different format.
+              This should be addressed.
+            </li>
+            <li>
+              A real-time dashboard should be built to monitor the sleep stages,
+              metrics and the details regarding the presence of sleep disorder.
+            </li>
+          </ul>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

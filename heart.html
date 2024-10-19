@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Heart Attack Prediction using Machine Learning</title>
+    <link rel="stylesheet" href="project_styles.css" />
+  </head>
+
+  <body>
+    <header class="title-bar">
+      <h1>Heart Attack Prediction using Machine Learning</h1>
+    </header>
+
+    <div class="container">
+      <main class="content">
+        <!-- Introduction -->
+        <section class="intro">
+          <p>
+            Heart attack or Cardio-Vascular diseases are major cause for deaths
+            in human being. In recent days, youngsters are facing heart diseases
+            without any prior warning.This project aims to provide an alert to
+            patients with the help of their lab data. The project comprises of
+          </p>
+          <ul>
+            <li>Dataset collection from kaggle</li>
+            <li>Exploratory data Analysis</li>
+            <li>Model development</li>
+            <li>Model deployment</li>
+            <li>Website creation</li>
+          </ul>
+          <p>
+            The main difference between this project and the other works are
+            that, this system makes use of the probability of the predicted
+            result tp provide in-depth result to the patient along with the risk
+            factor. The code for this project can be found
+            <a
+              href="https://github.com/JasperT2000/Heart_Disease_Prediction_Application_using_Random_Forest_Model"
+              >here.</a
+            >.
+          </p>
+        </section>
+        <section class="intro">
+          <h3>Dataset Collection and Processing</h3>
+          <p>
+            The dataset for this project was collected from kaggle
+            <a
+              href="https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction"
+              >(dataset)</a
+            >.
+          </p>
+          <p>The dataset consists of:</p>
+          <img
+            src="images/heartdata.png"
+            alt="Data info"
+            class="image"
+            height="300"
+            width="300"
+          />
+          <p>
+            The data has no null or duplicate entries. However a lot of unknown
+            entries have been replaced with 0 in columns
+            <strong>"Cholesterol"</strong> and <strong>"RestingBP"</strong>.
+            These rows have been identified programmatically and the values have
+            been replaced with mean values of the entries with their respective
+            labels.
+          </p>
+          <img src="images/preprocess.png" alt="Pre-processing" class="image" />
+        </section>
+        <section class="intro">
+          <h3>Exploratory Data Analysis:</h3>
+          <p>
+            We are going to try plotting a few figures that would help us
+            understand more about the data and help us find about the corelation
+            between variables. Only the important charts are being attached
+            here. The complete analysis is found in the EDA file in the github
+            repoitory.
+          </p>
+          <h4>Heart attack distribution among age groups</h4>
+          <img src="images/pieage.png" alt="Pie chart" class="image" />
+          <p>
+            From the above plot it is evident that around
+            <strong>75%</strong> of the total heart attacks occur in people with
+            age <strong>above 50</strong>.
+          </p>
+          <h4>RestingBP Distribution:</h4>
+          <div>
+            <div class="inline-block">
+              <img
+                src="images/bp1.png"
+                alt="Resting bp1"
+                width="400"
+                height="400"
+              />
+            </div>
+            <div class="inline-block">
+              <img
+                src="images/bp2.png"
+                alt="Resting bp2"
+                width="400"
+                height="400"
+              />
+            </div>
+          </div>
+          <p>
+            From the above plots, there is nothing much to be interpreted since
+            both the distributions are almost identical and hence we can
+            conclude that this variable is not crucial in decision making.
+          </p>
+          <h4>ST Slope</h4>
+          <img src="images/st.png" alt="ST bar graph" class="image" />
+          <p>
+            The ST segment is the flat, isoelectric section of the ECG between
+            the end of the S wave (the J point) and the beginning of the T wave.
+          </p>
+          <p>
+            From the above bar plot, we can find that there is clear
+            distinguished pattern. The <strong>flat</strong> ST Slope signifies
+            more risk of being a heart patient than the others.
+          </p>
+          <h4>Correlation heatmap</h4>
+          <img src="images/heatmap.png" alt="Heatmap" class="image" />
+          <p>
+            The heatmap is useful in terms of viewing the correlation between
+            various variables (especially the target variable) which helps us
+            draw conclusions on a simple level as how a variable is affected
+            with the changes in other variable.
+          </p>
+        </section>
+        <section class="intro">
+          <h3>Model Development</h3>
+          <p>
+            For this task, I have chosen to proceed with Random Forest
+            classifier. The dataset is scaled, pre-processed and then the model
+            is being trained and tested. The results are shown below:
+          </p>
+          <img src="images/cm2.png" alt="Classification report" class="image" />
+          <p>
+            The model has performed well. The accuracy achieved by the model is
+            around <strong>85%</strong> which suggests that the model has fitted
+            the data properly. The model is ready for deployment.
+          </p>
+        </section>
+        <section class="intro">
+          <h3>Model Deployment</h3>
+          <p>
+            To deploy the model, the model was converted to pickle format so
+            that it can be used at the backend for a small website. The website
+            has a form to get the input variables from the user. This data
+            collected is then used to feed into the deployed model and the
+            prediction is obtained. Based on the obtained prediction and its
+            probability of occurrence, 4 different result pages have been
+            developed go warn the user.
+          </p>
+          <h4>Home page:</h4>
+          <img src="images/home.png" alt="Home page" class="image" />
+          <p>
+            The result pages that should be shown from one of the 4 shown below
+            is chosen by the probability value returned from the model
+          </p>
+          <ul>
+            <li>0 < Probability < 30 : Green zone</li>
+            <li>30 < Probability < 50 : Yellow zone</li>
+            <li>50 < Probability < 70 : Orange zone</li>
+            <li>70 < Probability < 100 : Red zone</li>
+          </ul>
+          <h4>Result pages:</h4>
+          <div>
+            <div class="inline-block">
+              <img
+                src="images/green.png"
+                alt="Green zone"
+                width="520"
+                height="500"
+              />
+            </div>
+            <div class="inline-block">
+              <img
+                src="images/yellow.png"
+                alt="Yellow zone"
+                width="520"
+                height="500"
+              />
+            </div>
+          </div>
+          <div>
+            <div class="inline-block">
+              <img
+                src="images/orange.png"
+                alt="Orange zone"
+                width="520"
+                height="500"
+              />
+            </div>
+            <div class="inline-block">
+              <img
+                src="images/red.png"
+                alt="Red zone"
+                width="520"
+                height="500"
+              />
+            </div>
+          </div>
+        </section>
+        <section class="intro">
+          <h3>CONCLUSION:</h3>
+          <p>
+            Through this project, a complete end to end heart disease prediction
+            system has been built and deployed on a website. The website can be
+            used as an additional tool at laboratories to assist technicians in
+            analysing various patient data. As a future work,
+            <ul>
+                <li>More diverse and robust dataset can be collected for this purpose</li>
+                <li>There are new developments in the areas of machine learning which can be used for the same.</li>
+            </ul>
+          </p>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analysis on data dump (Data Science Stack Exchange)</title>
+    <link rel="stylesheet" href="project_styles.css" />
+  </head>
+
+  <body>
+    <header class="title-bar">
+      <h1>Analysis on data dump (Data Science Stack Exchange)</h1>
+    </header>
+
+    <div class="container">
+      <main class="content">
+        <!-- Introduction -->
+        <section class="intro">
+          <h3>Introduction</h3>
+          <p>
+            This report presents an analysis of the Data Science Stack Exchange
+            site using the most recent data dump. The goal is to gain insights
+            into the data, with a focus on text extraction and visualization. We
+            will be additionally using regex patterns to extract the necessary
+            data.
+          </p>
+          <p>
+            The notebook containing the analysis can be found
+            <a
+              href="https://github.com/JasperT2000/datastack_analysis/blob/main/stack_analysis.ipynb"
+              >here.</a
+            >
+          </p>
+          <p>
+            A detailed instuction page on how to access the data dump can be
+            found
+            <a href="https://datascience.stackexchange.com/help/data-dumps"
+              >here.</a
+            >
+          </p>
+        </section>
+        <section class="intro">
+          <h3>Analysis</h3>
+          <h5>Wordcloud on titles of posts</h5>
+          <p>
+            The first plot is to find the most repetitive words in titles among
+            the posts that have been posted throughout. We will bw doing this
+            with the help of 'wordcloud' package.
+          </p>
+          <img src="images/wordcloud.png" alt="Word Cloud" class="image" />
+          <hr />
+          <h5>Top tags used in posts</h5>
+          <p>
+            For the next part, we are going to analyse the tags of the posts
+            data. A little pre-processing is required to remove the tag elements
+            and to analyse them.
+          </p>
+          <img src="images/tags.png" alt="Tags" class="image" />
+          <p>
+            The most used tags in posts are
+            <strong>"Machine learning", "Pandas" amd "Python"</strong>.
+          </p>
+          <hr />
+          <h5>Length of comments distribution</h5>
+          <p>
+            For the next plot, we will analyse how many characters are usually
+            used to make comments in a post
+          </p>
+          <img src="images/comments.png" alt="Comments" class="image" />
+          <hr />
+          <h5>Different email domains used in the posts</h5>
+          <p>
+            In this part, we will check the top 10 email domains that are
+            present in the comments. This requires a little pre-processing. We
+            wil be using regex pattern to match the email address domain and
+            retrieve them for analysis.
+          </p>
+          <img src="images/email.png" alt="Email" class="image" />
+          <hr />
+          <h5>Table to filter posts based on keywords</h5>
+          <p>
+            Next, we will create a table that shows details such as title of the
+            post, author of the post and user's reputation score.
+          </p>
+          <video class="video" muted controls>
+            <source src="videos/table2.mov" type="video/mp4" />
+          </video>
+          <hr />
+          <h5>Number of Comments over the year</h5>
+          <p>
+            We will plot the number of comments over the time (monthly) to view
+            when we have received a lot of comments and try to bring out some
+            patterns. The following Python code uses Bokeh to create an
+            interactive time series plot of the number of comments on posts
+            containing specific keywords (data science or machine learning) in
+            their titles.
+          </p>
+          <img
+            src="images/numbercomments.png"
+            alt="Number of Comments"
+            class="image"
+          />
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
