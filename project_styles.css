@@ -1,40 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary: #7c3aed;
+  --primary-light: #a78bfa;
+  --primary-dark: #5b21b6;
+  --primary-bg: #ede9fe;
+  --body-bg: #f1f5f9;
+  --card-bg: #ffffff;
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --border: #e2e8f0;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --radius: 12px;
+  --radius-sm: 6px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', Arial, sans-serif;
   line-height: 1.6;
-  background-color: #f4f4f4;
+  background-color: var(--body-bg);
   margin: 0;
   padding: 0;
+  color: var(--text-primary);
 }
 
+/* Header */
 .title-bar {
-  background-color: #9e77d6;
+  background: linear-gradient(135deg, #1e1b2e 0%, #4c1d95 100%);
   color: #fff;
-  padding: 1rem;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+.title-bar h1 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  flex: 1;
   text-align: center;
 }
 
+.back-btn {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-sm);
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+/* Layout */
 .container {
-  max-width: 1200px;
+  max-width: 960px;
   margin: 2rem auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
 }
 
+/* Content card */
 .content {
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: var(--card-bg);
+  padding: 2rem 2.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
 }
 
-h1,
-h2 {
-  color: #333;
+/* Typography */
+h1, h2 {
+  color: var(--text-primary);
   text-align: center;
 }
 
 h2 {
-  border-bottom: 2px solid #6200ea;
+  font-size: 1.35rem;
+  font-weight: 600;
+  border-bottom: 2px solid var(--primary-bg);
   padding-bottom: 0.5rem;
+  margin-top: 0;
 }
 
 section {
@@ -42,32 +104,23 @@ section {
 }
 
 p {
-  font-size: 1.1rem;
-  color: #555;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
   line-height: 1.8;
 }
 
 ul {
   list-style: disc;
-  margin-left: 2rem;
-  color: #555;
+  margin-left: 1.5rem;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
 }
 
-.image {
-  display: block;
-  width: 100%;
-  max-width: 600px;
-  margin: 1.5rem auto;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+ul li {
+  margin-bottom: 0.35rem;
 }
 
-section h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-
+/* Section blocks */
 .intro,
 .data,
 .features,
@@ -76,35 +129,55 @@ section h2 {
 .visualization,
 .conclusion,
 .sleepmetrics {
-  padding: 1rem;
-  background-color: #fff;
-  border-radius: 6px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  padding: 1.25rem;
+  background-color: var(--card-bg);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1rem;
 }
+
+/* Images */
+.image {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  margin: 1.5rem auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+}
+
+/* Videos */
+.video {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  margin: 1.5rem auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+}
+
+/* Image captions */
 .inline-block {
   display: inline-block;
 }
+
 .image-container {
   position: relative;
+  display: inline-block;
 }
 
 .image-name {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
   color: white;
   text-align: center;
-  padding: 10px;
-}
-
-.video {
-  display: block;
-  width: 100%;
-  max-width: 600px;
-  margin: 1.5rem auto;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem;
+  font-size: 0.82rem;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
 }
